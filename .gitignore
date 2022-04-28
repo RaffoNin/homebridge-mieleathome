@@ -1,6 +1,6 @@
 # Ignore compiled code
-dist
-node_modules.nosync
+# dist
+# node_modules.nosync
 .DS_Store
 
 # ------------- Defaults ------------- #
