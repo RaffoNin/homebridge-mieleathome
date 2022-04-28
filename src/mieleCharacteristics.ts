@@ -283,7 +283,8 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
           this.platform.getActionsUrl(this.serialNumber),
           {
             powerOn: true,
-          }
+          },
+          this.platform.getHttpRequestConfig()
         );
 
         this.platform.log.debug(
@@ -296,12 +297,15 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
           this.platform.getActionsUrl(this.serialNumber),
           {
             powerOff: true,
-          }
+          },
+          this.platform.getHttpRequestConfig()
         );
 
         this.platform.log.debug(
           `${this.deviceName}: Process action response code: ${response.status}: "${response.statusText}"`
         );
+
+        this.platform.log.info(`Here is the header: ${response.headers}`);
       } else if (response.data.processAction.includes(mieleProcesAction)) {
         this.platform.log.info(
           `${this.deviceName} (${this.serialNumber}): Process action ` +
