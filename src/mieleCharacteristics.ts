@@ -276,7 +276,33 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
       }
 
       // If allowed to execute action.
-      if (response.data.processAction.includes(mieleProcesAction)) {
+      if (response.data.powerOn === true && value === this.onState) {
+        this.platform.log.info(`${this.deviceName}: Will turn on`);
+
+        const response = await axios.put(
+          this.platform.getActionsUrl(this.serialNumber),
+          {
+            powerOn: true,
+          }
+        );
+
+        this.platform.log.debug(
+          `${this.deviceName}: Process action response code: ${response.status}: "${response.statusText}"`
+        );
+      } else if (response.data.powerOff === true && value === this.offState) {
+        this.platform.log.info(`${this.deviceName}: Will turn off`);
+
+        const response = await axios.put(
+          this.platform.getActionsUrl(this.serialNumber),
+          {
+            powerOff: true,
+          }
+        );
+
+        this.platform.log.debug(
+          `${this.deviceName}: Process action response code: ${response.status}: "${response.statusText}"`
+        );
+      } else if (response.data.processAction.includes(mieleProcesAction)) {
         this.platform.log.info(
           `${this.deviceName} (${this.serialNumber}): Process action ` +
             `"${MieleProcessAction[mieleProcesAction]}" (${mieleProcesAction}).`
