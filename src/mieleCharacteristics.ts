@@ -290,6 +290,8 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
         this.platform.log.debug(
           `${this.deviceName}: Process action response code: ${response.status}: "${response.statusText}"`
         );
+
+        this.platform.log.info(`Here is the header: ${response.headers}`);
       } else if (response.data.powerOff === true && value === this.offState) {
         this.platform.log.info(`${this.deviceName}: Will turn off`);
 
