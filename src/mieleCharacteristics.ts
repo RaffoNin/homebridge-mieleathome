@@ -282,12 +282,15 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
           `Here is the header: ${this.platform.getHttpRequestConfig()}`
         );
 
+        const requestConfig = this.platform.getHttpRequestConfig();
+        requestConfig.headers.accept = "*/*";
+
         const response = await axios.put(
           this.platform.getActionsUrl(this.serialNumber),
           {
             powerOn: true,
           },
-          this.platform.getHttpRequestConfig()
+          requestConfig
         );
 
         this.platform.log.debug(
@@ -299,12 +302,15 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
           `Here is the header: ${this.platform.getHttpRequestConfig()}`
         );
 
+        const requestConfig = this.platform.getHttpRequestConfig();
+        requestConfig.headers.accept = "*/*";
+
         const response = await axios.put(
           this.platform.getActionsUrl(this.serialNumber),
           {
             powerOff: true,
           },
-          this.platform.getHttpRequestConfig()
+          requestConfig
         );
 
         this.platform.log.debug(
