@@ -247,8 +247,7 @@ export class MieleAtHomePlatform implements DynamicPlatformPlugin {
         return new MieleWasherDryerPlatformAccessory(
           this,
           accessory,
-          // this.disableStopActionFor.includes(MieleDeviceIds[raw_id]),
-          false,
+          this.disableStopActionFor.includes(MieleDeviceIds[raw_id]),
           this.disableTempSensorFor.includes(MieleDeviceIds[raw_id])
         );
 
