@@ -293,6 +293,7 @@ export class MieleAtHomePlatform implements DynamicPlatformPlugin {
   public getHttpRequestConfig(): { headers: Record<string, unknown> } {
     return {
       headers: {
+        accept: "*/*",
         Authorization: this.token?.getAccessToken(),
         "Content-Type": "application/json",
       },

@@ -278,19 +278,13 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
       // If allowed to execute action.
       if (response.data.powerOn === true && value === this.onState) {
         this.platform.log.info(`${this.deviceName}: Will turn on`);
-        this.platform.log.info(
-          `Here is the header: ${this.platform.getHttpRequestConfig()}`
-        );
-
-        const requestConfig = this.platform.getHttpRequestConfig();
-        requestConfig.headers.accept = "*/*";
 
         const response = await axios.put(
           this.platform.getActionsUrl(this.serialNumber),
           {
             powerOn: true,
           },
-          requestConfig
+          this.platform.getHttpRequestConfig()
         );
 
         this.platform.log.debug(
@@ -298,19 +292,13 @@ export class MieleWritableBinaryStateCharacteristic extends MieleBinaryStateChar
         );
       } else if (response.data.powerOff === true && value === this.offState) {
         this.platform.log.info(`${this.deviceName}: Will turn off`);
-        this.platform.log.info(
-          `Here is the header: ${this.platform.getHttpRequestConfig()}`
-        );
-
-        const requestConfig = this.platform.getHttpRequestConfig();
-        requestConfig.headers.accept = "*/*";
 
         const response = await axios.put(
           this.platform.getActionsUrl(this.serialNumber),
           {
             powerOff: true,
           },
-          requestConfig
+          this.platform.getHttpRequestConfig()
         );
 
         this.platform.log.debug(
